@@ -1,0 +1,15 @@
+# Clave de API — NUNCA subir esto a GitHub
+clave*api*dashboard*.txt
+*.env
+
+# Log privado de auditoría del NLQ (contiene SQL generado, solo para uso local)
+nlq_log_privado.csv
+
+# Base de datos (pesada, se genera con el pipeline ETL — no va en el repo)
+data/
+*.db
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/

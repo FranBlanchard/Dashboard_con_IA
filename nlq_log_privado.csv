@@ -1,0 +1,38 @@
+fecha_hora,pregunta,ok,sql_generado,razones_rechazo,n_filas,error
+2026-11-23T10:08:52,que canal fue la mayor venta neta?,True,"-- Canal con mayor venta neta en 2025 (suma de venta_neta por canal, todas las sucursales y categorias)
+SELECT canal,
+       SUM(venta_neta) AS venta_neta_total
+FROM gold_dm_comercial_ventas
+WHERE anio = 2025
+GROUP BY canal
+ORDER BY venta_neta_total DESC
+LIMIT 1",,1,
+2026-11-23T10:09:57,que canal fue la mayor venta neta en el mes de diciembre?,False,,,,"No se pudo contactar a la IA: Request timed out or interrupted. This could be due to a network timeout, dropped connection, or request cancellation. See https://docs.anthropic.com/en/api/errors#long-requests for more details."
+2026-11-23T10:10:50,cual de todos los canales fue el que tuvo mayor venta neta?,False,,,,"No se pudo contactar a la IA: Request timed out or interrupted. This could be due to a network timeout, dropped connection, or request cancellation. See https://docs.anthropic.com/en/api/errors#long-requests for more details."
+2026-11-23T10:11:17,cual de todos los canales fue el que tuvo mayor venta neta en diciembre?,False,,,,"No se pudo contactar a la IA: Request timed out or interrupted. This could be due to a network timeout, dropped connection, or request cancellation. See https://docs.anthropic.com/en/api/errors#long-requests for more details."
+2026-11-23T10:16:04,cual fue el canal donde la venta neta fue mayor en el mes de diciembre,False,,,,"No se pudo contactar a la IA: Request timed out or interrupted. This could be due to a network timeout, dropped connection, or request cancellation. See https://docs.anthropic.com/en/api/errors#long-requests for more details."
+2026-11-23T10:16:34,cual fue la venta neta del canal web en el mes de diciembre,True,"-- ""Canal web"" se interpreta como canal = 'E-commerce' (sin incluir App).
+-- Periodo: diciembre (mes = 12) de 2025.
+SELECT SUM(venta_neta) AS venta_neta_web_diciembre
+FROM gold_dm_comercial_ventas
+WHERE anio = 2025
+  AND mes = 12
+  AND canal = 'E-commerce'",,1,
+2026-11-23T10:16:45,cual fue la venta neta del canal tienda fisica en el mes de diciembre,True,"-- Venta neta del canal 'Tienda física' en diciembre de 2025
+SELECT SUM(venta_neta) AS venta_neta
+FROM gold_dm_comercial_ventas
+WHERE anio = 2025
+  AND mes = 12
+  AND canal = 'Tienda física'",,1,
+2026-11-23T10:17:44,dame los rut de los clientes,False,,,,La IA determinó que esta pregunta no se puede responder con el modelo de datos disponible (dato fuera de alcance o requiere información personal de clientes).
+2026-11-23T13:13:28,dame el rut de un cliente,False,,,,La IA determinó que esta pregunta no se puede responder con el modelo de datos disponible (dato fuera de alcance o requiere información personal de clientes).
+2026-11-23T13:17:28,que canal de venta vendió mas en el mes de diciembre?,True,"-- Canal con mayor venta neta en diciembre de 2025 (anio = 2025 por defecto)
+SELECT
+  canal,
+  SUM(venta_neta) AS venta_neta_total
+FROM gold_dm_comercial_ventas
+WHERE anio = 2025
+  AND mes = 12
+GROUP BY canal
+ORDER BY venta_neta_total DESC
+LIMIT 1",,1,
